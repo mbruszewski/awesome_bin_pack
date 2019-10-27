@@ -1,4 +1,5 @@
 require "bundler/setup"
+require 'pry'
 require "awesome_bin_pack"
 
 RSpec.configure do |config|
