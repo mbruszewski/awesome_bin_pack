@@ -1,6 +1,6 @@
 module AwesomeBinPack
   class Bin
-    attr_reader :width, :height, :items, :pos_x, :pos_y
+    attr_reader :width, :height, :items, :pos_x, :pos_y, :area
 
     def initialize(width, height, pos_x = 0, pos_y = 0)
       @width = width
@@ -8,6 +8,8 @@ module AwesomeBinPack
       @items = []
       @pos_x = pos_x
       @pos_y = pos_y
+
+      @area = width * height
     end
 
     def to_s
