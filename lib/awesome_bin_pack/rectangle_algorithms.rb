@@ -14,6 +14,7 @@ module AwesomeBinPack
 
     def calculate_by_higher_area
       bin = @orig_bin.dup
+      bin.pos_z = 1
       rectangles = orig_rectangles.sort_by { |rectangle| rectangle.area }
 
       full_bins_used = 1
@@ -40,6 +41,7 @@ module AwesomeBinPack
         # if rectangle does fit any bin, create a new one
         if !rectangle.used
           bin = orig_bin.dup
+          bin.pos_z = full_bins_used + 1
 
           spare_bins, used_rectangle = bin.add(rectangle)
 

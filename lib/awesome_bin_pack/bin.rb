@@ -1,13 +1,15 @@
 module AwesomeBinPack
   class Bin
-    attr_reader :width, :height, :items, :pos_x, :pos_y, :area
+    attr_reader :width, :height, :area
+    attr_accessor :items, :pos_x, :pos_y, :pos_z
 
-    def initialize(width, height, pos_x = 0, pos_y = 0)
+    def initialize(width, height, pos_x = 0, pos_y = 0, pos_z = 0)
       @width = width
       @height = height
       @items = []
       @pos_x = pos_x
       @pos_y = pos_y
+      @pos_z = pos_z
 
       @area = width * height
     end
@@ -27,6 +29,7 @@ module AwesomeBinPack
         rectangle = rectangle.rotate if rectangle.need_rotate?(self)
         rectangle.pos_x = self.pos_x
         rectangle.pos_y = self.pos_y
+        rectangle.pos_z = self.pos_z
 
         bins = []
         
@@ -39,7 +42,8 @@ module AwesomeBinPack
             self.width,
             self.height - rectangle.height,
             pos_x,
-            rectangle.height + pos_y
+            rectangle.height + pos_y,
+            pos_z
           )
         elsif rectangle.height == self.height
           # return 1 bin, 1 rectangle
@@ -47,7 +51,8 @@ module AwesomeBinPack
             self.width - rectangle.width,
             self.height,
             rectangle.width + pos_x,
-            pos_y
+            pos_y,
+            pos_z
           )
         else
           # return 2 bins, 1 rectangle
@@ -55,13 +60,15 @@ module AwesomeBinPack
             self.width - rectangle.width,
             self.height,
             pos_x,
-            rectangle.height + pos_y
+            rectangle.height + pos_y,
+            pos_z
           )
           bins << AwesomeBinPack::Bin.new(
             self.width - rectangle.width,
             self.height - rectangle.height,
             rectangle.width + pos_x,
-            pos_y
+            pos_y,
+            pos_z
           )
         end
 

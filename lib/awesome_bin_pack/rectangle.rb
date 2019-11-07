@@ -1,7 +1,7 @@
 module AwesomeBinPack
   class Rectangle
     attr_reader :width, :height, :rotatable, :area
-    attr_accessor :pos_x, :pos_y, :bin_index, :used
+    attr_accessor :pos_x, :pos_y, :pos_z, :used
 
     def initialize(width, height, rotatable = false)
       @width = width
